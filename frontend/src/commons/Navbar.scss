@@ -1,0 +1,13 @@
+.app-navbar {
+  &__header {
+    display: flex;
+    padding: 0 8px;
+    min-height: 64px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__content {
+    width: 240px;
+  }
+}
