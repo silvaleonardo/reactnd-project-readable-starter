@@ -14,6 +14,7 @@ const Header = ({ menuToggleClick }) => (
   >
     <Toolbar>
       <IconButton
+        className="app-header__btn-toggle"
         color="inherit"
         aria-label="Menu"
         onClick={ () => menuToggleClick() }
