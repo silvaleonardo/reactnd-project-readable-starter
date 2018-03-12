@@ -1,0 +1,22 @@
+.app-layout {
+  &.menu-opened {
+    overflow-x: hidden;
+
+    .app-header,
+    .app-main {
+      transform: translateX(240px);
+      transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0;
+    }
+
+    .app-header {
+      &__btn-toggle {
+        display: none;
+      }
+    }
+  }
+
+  .app-main {
+    padding: 24px;
+    flex-grow: 1;
+  }
+}
