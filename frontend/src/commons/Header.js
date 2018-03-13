@@ -10,7 +10,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 const Header = ({ menuToggleClick }) => (
   <AppBar
     className="app-header"
-    position="static"
+    position="fixed"
   >
     <Toolbar>
       <IconButton
