@@ -1,4 +1,8 @@
 @import './components/OrderBy.scss';
 @import './components/PostCard.scss';
 
-.posts-list {}
+.posts-list {
+  &__content {
+    margin-top: 24px !important;
+  }
+}
