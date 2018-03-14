@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
@@ -20,7 +21,7 @@ const PostCard = ({ data, onVoteScore, onEdit, onDelete }) => (
   <Card className="post-card">
     <CardHeader
       avatar={ <Avatar>{ data.title.charAt(0).toUpperCase() }</Avatar> }
-      title={ data.title }
+      title={ <Link to={ `/${data.category}/${data.id}` }>{ data.title }</Link> }
       subheader={ `${moment(data.timestamp).format('DD/MM/YYYY')} | ${data.author}` }
     />
 
@@ -67,7 +68,8 @@ const PostCard = ({ data, onVoteScore, onEdit, onDelete }) => (
         <Grid item xs className="post-card__grid-item">
           <IconButton
             className="post-card__btn-action"
-            onClick={ () => onEdit(data.id) }
+            component={ Link }
+            to={ `/${data.category}/${data.id}/edit` }
           >
             <EditIcon />
           </IconButton>
@@ -91,11 +93,11 @@ PostCard.propTypes = {
     timestamp: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
     voteScore: PropTypes.number.isRequired,
     commentCount: PropTypes.number.isRequired
   }).isRequired,
   onVoteScore: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired
 };
 

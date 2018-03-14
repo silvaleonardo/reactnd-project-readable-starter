@@ -13,6 +13,7 @@ for(let i = 0; i < 9; i++) {
     timestamp: 1467166872634,
     title: 'Udacity is the best place to learn React',
     author: 'thingtwo',
+    category: 'react',
     voteScore: 6,
     commentCount: 2
   });
@@ -24,7 +25,6 @@ class PostsList extends Component {
 
     this.handlerChangeOrderBy = this.handlerChangeOrderBy.bind(this);
     this.handlerChangeVote = this.handlerChangeVote.bind(this);
-    this.handlerPostEdit = this.handlerPostEdit.bind(this);
     this.handlerPostDelete = this.handlerPostDelete.bind(this);
   }
 
@@ -34,10 +34,6 @@ class PostsList extends Component {
 
   handlerChangeVote(id, type) {
     console.log(`Vote score: '${type}' (${id})`);
-  }
-
-  handlerPostEdit(id) {
-    console.log(`Post id: '${id}'`);
   }
 
   handlerPostDelete(id) {
@@ -55,7 +51,6 @@ class PostsList extends Component {
               <PostCard
                 data={ post }
                 onVoteScore={ this.handlerChangeVote }
-                onEdit={ this.handlerPostEdit }
                 onDelete={ this.handlerPostDelete }
               />
             </Grid>
