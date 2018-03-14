@@ -10,7 +10,7 @@ import Select from 'material-ui/Select';
 import ArrowUpwardIcon from 'material-ui-icons/ArrowUpward';
 import ArrowDownwardIcon from 'material-ui-icons/ArrowDownward';
 
-class OrderBy extends Component {
+class PostListOrderBy extends Component {
   static propTypes = {
     onChange: PropTypes.func
   };
@@ -55,4 +55,4 @@ class OrderBy extends Component {
   };
 }
 
-export default OrderBy;
+export default PostListOrderBy;

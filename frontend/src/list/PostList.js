@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import Grid from 'material-ui/Grid';
 
-import OrderBy from './components/OrderBy';
-import PostCard from './components/PostCard';
+import PostListOrderBy from './PostListOrderBy';
+import PostListCard from './PostListCard';
 
 const mockListPosts = [];
 
@@ -19,7 +19,7 @@ for(let i = 0; i < 9; i++) {
   });
 }
 
-class PostsList extends Component {
+class PostList extends Component {
   constructor(props) {
     super(props);
 
@@ -43,12 +43,12 @@ class PostsList extends Component {
   render() {
     return (
       <section className="posts-list">
-        <OrderBy onChange={ this.handlerChangeOrderBy } />
+        <PostListOrderBy onChange={ this.handlerChangeOrderBy } />
 
         <Grid container className="posts-list__content">
           { mockListPosts.map((post, index) => (
             <Grid item xs={4} key={ index }>
-              <PostCard
+              <PostListCard
                 data={ post }
                 onVoteScore={ this.handlerChangeVote }
                 onDelete={ this.handlerPostDelete }
@@ -61,4 +61,4 @@ class PostsList extends Component {
   }
 };
 
-export default PostsList;
+export default PostList;

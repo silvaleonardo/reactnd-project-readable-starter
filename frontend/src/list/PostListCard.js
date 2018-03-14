@@ -17,7 +17,7 @@ import ThumbDownIcon from 'material-ui-icons/ThumbDown';
 import EditIcon from 'material-ui-icons/Edit';
 import DeleteIcon from 'material-ui-icons/Delete';
 
-const PostCard = ({ data, onVoteScore, onEdit, onDelete }) => (
+const PostListCard = ({ data, onVoteScore, onEdit, onDelete }) => (
   <Card className="post-card">
     <CardHeader
       avatar={ <Avatar>{ data.title.charAt(0).toUpperCase() }</Avatar> }
@@ -87,7 +87,7 @@ const PostCard = ({ data, onVoteScore, onEdit, onDelete }) => (
   </Card>
 );
 
-PostCard.propTypes = {
+PostListCard.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string.isRequired,
     timestamp: PropTypes.number.isRequired,
@@ -101,4 +101,4 @@ PostCard.propTypes = {
   onDelete: PropTypes.func.isRequired
 };
 
-export default PostCard;
+export default PostListCard;

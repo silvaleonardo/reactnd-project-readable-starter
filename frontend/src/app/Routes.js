@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import PostList from '../PostList';
+import PostList from '../list/PostList';
 
 export default () => (
   <Switch>
