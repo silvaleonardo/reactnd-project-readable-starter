@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import PostsList from '../PostsList';
+import PostList from '../PostList';
 
 export default () => (
   <Switch>
-    <Route exact path="/" component={ PostsList } />
-    <Route exact path="/:category" component={ PostsList } />
+    <Route exact path="/" component={ PostList } />
+    <Route exact path="/:category" component={ PostList } />
 
     <Redirect from="*" to="/" />
   </Switch>
