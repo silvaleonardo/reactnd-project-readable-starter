@@ -6,7 +6,7 @@ import PostsList from '../PostsList';
 export default () => (
   <Switch>
     <Route exact path="/" component={ PostsList } />
-    <Route path="/:category" component={ PostsList } />
+    <Route exact path="/:category" component={ PostsList } />
 
     <Redirect from="*" to="/" />
   </Switch>
