@@ -16,9 +16,8 @@ export default (state = initialState, action) => {
     case POST_LIST_RECEIVE:
       return {
         ...state,
-        loading: false,
-        error: action.error,
-        list: action.data
+        ...action.payload,
+        loading: false
       };
     default:
       return state;

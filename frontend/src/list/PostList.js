@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Grid from 'material-ui/Grid';
 
 import PostListOrderBy from './PostListOrderBy';
 import PostListCard from './PostListCard';
+
+import { getPosts } from './actions';
 
 const mockListPosts = [];
 
@@ -26,6 +29,10 @@ class PostList extends Component {
     this.handlerChangeOrderBy = this.handlerChangeOrderBy.bind(this);
     this.handlerChangeVote = this.handlerChangeVote.bind(this);
     this.handlerPostDelete = this.handlerPostDelete.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getPosts();
   }
 
   handlerChangeOrderBy(orderBy) {
@@ -61,4 +68,14 @@ class PostList extends Component {
   }
 };
 
-export default PostList;
+const mapStateToProps = ({ PostList: { loading, error, list } }) => ({
+  loading,
+  error,
+  list
+});
+
+const mapDispatchToProps = dispatch => ({
+  getPosts: () => getPosts(dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);
