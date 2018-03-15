@@ -20,14 +20,13 @@ export const getPosts = (dispatch) => {
     }));
 };
 
-export const sortPosts = (dispatch, orderBy) => {
+export const sortPosts = (dispatch, orderBy) =>
   dispatch({
     type: POST_LIST_SORT,
     payload: orderBy
   });
-};
 
-export const votePost = (dispatch, id, option) => {
+export const votePost = (dispatch, id, option) =>
   voteFromId(id, option)
     .then(post => dispatch({
       type: POST_LIST_VOTE,
@@ -36,8 +35,7 @@ export const votePost = (dispatch, id, option) => {
     .catch(() => dispatch({
       type: POST_LIST_VOTE,
       payload: { error: 'There was a problem to vote in post, try again later!' }
-    }))
-};
+    }));
 
 export const deletePost = (dispatch, id) => deleteFromId(id)
   .then(post => dispatch({
