@@ -11,8 +11,6 @@ export const headers = {
   Authorization: getToken()
 };
 
-console.log(headers);
-
 export const baseUrl = 'http://localhost:3001';
 
 export default (url, opts = {}) => fetch(`${baseUrl}${url}`, Object.assign({}, { headers }, opts));

@@ -10,20 +10,6 @@ import PostListCard from './PostListCard';
 
 import { getPosts } from './actions';
 
-const mockListPosts = [];
-
-for(let i = 0; i < 9; i++) {
-  mockListPosts.push({
-    id: '8xf0y6ziyjabvozdd253nd',
-    timestamp: 1467166872634,
-    title: 'Udacity is the best place to learn React',
-    author: 'thingtwo',
-    category: 'react',
-    voteScore: 6,
-    commentCount: 2
-  });
-}
-
 class PostList extends Component {
   constructor(props) {
     super(props);
