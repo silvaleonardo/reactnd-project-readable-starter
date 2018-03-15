@@ -7,10 +7,17 @@ export const getToken = () => {
 };
 
 export const headers = {
+  'Content-Type': 'application/json',
   Accept: 'application/json',
   Authorization: getToken()
 };
 
 export const baseUrl = 'http://localhost:3001';
 
-export default (url, opts = {}) => fetch(`${baseUrl}${url}`, Object.assign({}, { headers }, opts));
+export default (url, opts = {}) => {
+  if (opts.body && typeof opts.body !== 'string') {
+    opts.body = JSON.stringify(opts.body);
+  }
+
+  return fetch(`${baseUrl}${url}`, Object.assign({}, { headers }, opts));
+};

@@ -8,7 +8,7 @@ import SnackbarMessage from '../commons/SnackbarMessage';
 import PostListOrderBy from './PostListOrderBy';
 import PostListCard from './PostListCard';
 
-import { getPosts, sortPosts } from './actions';
+import { getPosts, sortPosts, votePost } from './actions';
 
 class PostList extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class PostList extends Component {
   }
 
   handlerChangeVote(id, type) {
-    console.log(`Vote score: '${type}' (${id})`);
+    this.props.votePost(id, type);
   }
 
   handlerPostDelete(id) {
@@ -46,7 +46,7 @@ class PostList extends Component {
           { loading ? (
             <Loading />
           ) : (
-            !list.length || error ? (
+            !list.length ? (
               <Grid item xs={12} className="posts-list__not-found">
                 No posts found!
               </Grid>
@@ -78,7 +78,8 @@ const mapStateToProps = ({ PostList: { loading, error, list } }) => ({
 
 const mapDispatchToProps = dispatch => ({
   getPosts: () => getPosts(dispatch),
-  sortPosts: orderBy => sortPosts(dispatch, orderBy)
+  sortPosts: orderBy => sortPosts(dispatch, orderBy),
+  votePost: (id, option) => votePost(dispatch, id, option)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

@@ -3,7 +3,8 @@ import sortBy from 'sort-by';
 import {
   POST_LIST_REQUEST,
   POST_LIST_RECEIVE,
-  POST_LIST_SORT
+  POST_LIST_SORT,
+  POST_LIST_VOTE
 } from './actions';
 
 const initialState = {
@@ -29,6 +30,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         list: [...state.list.sort(sortBy(action.payload))]
+      };
+    case POST_LIST_VOTE:
+      return {
+        ...state,
+        error: action.payload.error || state.error,
+        list: action.payload.error ? state.list : state.list
+          .map(item => (item.id === action.payload.post.id ? action.payload.post : item))
       };
     default:
       return state;
