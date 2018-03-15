@@ -19,5 +19,6 @@ export default (url, opts = {}) => {
     opts.body = JSON.stringify(opts.body);
   }
 
-  return fetch(`${baseUrl}${url}`, Object.assign({}, { headers }, opts));
+  return fetch(`${baseUrl}${url}`, Object.assign({}, { headers }, opts))
+    .then(res => res.json());
 };
