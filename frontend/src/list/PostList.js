@@ -8,7 +8,7 @@ import SnackbarMessage from '../commons/SnackbarMessage';
 import PostListOrderBy from './PostListOrderBy';
 import PostListCard from './PostListCard';
 
-import { getPosts, sortPosts, votePost } from './actions';
+import { getPosts, sortPosts, votePost, deletePost } from './actions';
 
 class PostList extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class PostList extends Component {
   }
 
   handlerPostDelete(id) {
-    console.log(`Post id: '${id}'`);
+    this.props.deletePost(id);
   }
 
   render() {
@@ -79,7 +79,8 @@ const mapStateToProps = ({ PostList: { loading, error, list } }) => ({
 const mapDispatchToProps = dispatch => ({
   getPosts: () => getPosts(dispatch),
   sortPosts: orderBy => sortPosts(dispatch, orderBy),
-  votePost: (id, option) => votePost(dispatch, id, option)
+  votePost: (id, option) => votePost(dispatch, id, option),
+  deletePost: id => deletePost(dispatch, id)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);
