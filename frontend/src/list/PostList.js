@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import Grid from 'material-ui/Grid';
 
+import Loading from '../commons/Loading';
+import SnackbarMessage from '../commons/SnackbarMessage';
 import PostListOrderBy from './PostListOrderBy';
 import PostListCard from './PostListCard';
 
@@ -48,21 +50,35 @@ class PostList extends Component {
   }
 
   render() {
+    const { loading, error, list } = this.props;
+
     return (
       <section className="posts-list">
         <PostListOrderBy onChange={ this.handlerChangeOrderBy } />
 
         <Grid container className="posts-list__content">
-          { mockListPosts.map((post, index) => (
-            <Grid item xs={4} key={ index }>
-              <PostListCard
-                data={ post }
-                onVoteScore={ this.handlerChangeVote }
-                onDelete={ this.handlerPostDelete }
-              />
-            </Grid>
-          )) }
+          { loading ? (
+            <Loading />
+          ) : (
+            !list.length || error ? (
+              <Grid item xs={12} className="posts-list__not-found">
+                No posts found!
+              </Grid>
+            ) : (
+              list.map((post, index) => (
+                <Grid item xs={4} key={ index }>
+                  <PostListCard
+                    data={ post }
+                    onVoteScore={ this.handlerChangeVote }
+                    onDelete={ this.handlerPostDelete }
+                  />
+                </Grid>
+              ))
+            )
+          ) }
         </Grid>
+
+        <SnackbarMessage message={ error } />
       </section>
     );
   }

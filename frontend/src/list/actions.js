@@ -13,6 +13,6 @@ export const getPosts = (dispatch) => {
     }))
     .catch(error => dispatch({
       type: POST_LIST_RECEIVE,
-      payload: { error }
+      payload: { error: 'There was a problem fetching posts, try again later!' }
     }));
 };
