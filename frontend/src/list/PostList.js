@@ -20,7 +20,9 @@ class PostList extends Component {
   }
 
   componentWillMount() {
-    this.props.getPosts();
+    const { params: { category } } = this.props.match;
+
+    this.props.getPosts(category);
   }
 
   handlerChangeOrderBy(orderBy) {
@@ -77,7 +79,7 @@ const mapStateToProps = ({ PostList: { loading, error, list } }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getPosts: () => getPosts(dispatch),
+  getPosts: category => getPosts(dispatch, category),
   sortPosts: orderBy => sortPosts(dispatch, orderBy),
   votePost: (id, option) => votePost(dispatch, id, option),
   deletePost: id => deletePost(dispatch, id)

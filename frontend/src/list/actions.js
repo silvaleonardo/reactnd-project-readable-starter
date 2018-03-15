@@ -6,10 +6,10 @@ export const POST_LIST_SORT = 'POST_LIST_SORT';
 export const POST_LIST_VOTE = 'POST_LIST_VOTE';
 export const POST_LIST_DELETE = 'POST_LIST_DELETE';
 
-export const getPosts = (dispatch) => {
+export const getPosts = (dispatch, category = null) => {
   dispatch({ type: POST_LIST_REQUEST });
 
-  getAll()
+  getAll(category)
     .then(list => dispatch({
       type: POST_LIST_RECEIVE,
       payload: { list }

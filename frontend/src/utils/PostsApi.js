@@ -1,7 +1,10 @@
 import request from './requestConfig';
 
-export const getAll = () =>
-  request('/posts');
+export const getAll = (category = null) => (
+  !category ?
+  request('/posts') :
+  request(`/${category}/posts`)
+);
 
 export const voteFromId = (id, option) =>
   request(`/posts/${id}`, { method: 'POST', body: { option } });
