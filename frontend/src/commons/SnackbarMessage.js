@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Snackbar from 'material-ui/Snackbar';
 import Button from 'material-ui/Button';
 
 class SnackbarMessage extends Component {
+  static propTypes = {
+    message: PropTypes.string
+  };
+
+  static defaultProps = {
+    message: ''
+  }
+
   state = {
     open: true
   };
