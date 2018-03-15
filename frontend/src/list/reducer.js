@@ -1,4 +1,10 @@
-import { POST_LIST_REQUEST, POST_LIST_RECEIVE } from './actions';
+import sortBy from 'sort-by';
+
+import {
+  POST_LIST_REQUEST,
+  POST_LIST_RECEIVE,
+  POST_LIST_SORT
+} from './actions';
 
 const initialState = {
   loading: false,
@@ -7,7 +13,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case POST_LIST_REQUEST:
       return {
         ...state,
@@ -18,6 +24,11 @@ export default (state = initialState, action) => {
         ...state,
         ...action.payload,
         loading: false
+      };
+    case POST_LIST_SORT:
+      return {
+        ...state,
+        list: [...state.list.sort(sortBy(action.payload))]
       };
     default:
       return state;

@@ -44,10 +44,10 @@ class PostListOrderBy extends Component {
             inputProps={ { name: 'orderby', id: 'order-by' } }
           >
             <MenuItem value="">None</MenuItem>
-            <MenuItem value="timestamp:desc">Date <ArrowDownwardIcon className="order-by__icon" /></MenuItem>
-            <MenuItem value="timestamp:asc">Date <ArrowUpwardIcon className="order-by__icon" /></MenuItem>
-            <MenuItem value="voteScore:desc">Vote Score <ArrowDownwardIcon className="order-by__icon" /></MenuItem>
-            <MenuItem value="voteScore:asc">Vote Score <ArrowUpwardIcon className="order-by__icon" /></MenuItem>
+            <MenuItem value="timestamp">Date <ArrowUpwardIcon className="order-by__icon" /></MenuItem>
+            <MenuItem value="-timestamp">Date <ArrowDownwardIcon className="order-by__icon" /></MenuItem>
+            <MenuItem value="voteScore">Vote Score <ArrowUpwardIcon className="order-by__icon" /></MenuItem>
+            <MenuItem value="-voteScore">Vote Score <ArrowDownwardIcon className="order-by__icon" /></MenuItem>
           </Select>
         </FormControl>
       </Paper>

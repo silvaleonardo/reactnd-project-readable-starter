@@ -8,7 +8,7 @@ import SnackbarMessage from '../commons/SnackbarMessage';
 import PostListOrderBy from './PostListOrderBy';
 import PostListCard from './PostListCard';
 
-import { getPosts } from './actions';
+import { getPosts, sortPosts } from './actions';
 
 class PostList extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class PostList extends Component {
   }
 
   handlerChangeOrderBy(orderBy) {
-    console.log(`Order by: '${orderBy}'`);
+    this.props.sortPosts(orderBy);
   }
 
   handlerChangeVote(id, type) {
@@ -52,7 +52,7 @@ class PostList extends Component {
               </Grid>
             ) : (
               list.map((post, index) => (
-                <Grid item xs={4} key={ index }>
+                <Grid item xs={4} key={ `${post.id}-${index}` }>
                   <PostListCard
                     data={ post }
                     onVoteScore={ this.handlerChangeVote }
@@ -77,7 +77,8 @@ const mapStateToProps = ({ PostList: { loading, error, list } }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getPosts: () => getPosts(dispatch)
+  getPosts: () => getPosts(dispatch),
+  sortPosts: orderBy => sortPosts(dispatch, orderBy)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);
