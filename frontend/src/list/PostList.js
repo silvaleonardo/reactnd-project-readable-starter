@@ -41,15 +41,15 @@ class PostList extends Component {
     const { loading, error, list } = this.props;
 
     return (
-      <section className="posts-list">
+      <section className="post-list">
         <PostListOrderBy onChange={ this.handlerChangeOrderBy } />
 
-        <Grid container className="posts-list__content">
+        <Grid container className="post-list__content">
           { loading ? (
             <Loading />
           ) : (
             !list.length ? (
-              <Grid item xs={12} className="posts-list__not-found">
+              <Grid item xs={12} className="post-list__not-found">
                 No posts found!
               </Grid>
             ) : (
