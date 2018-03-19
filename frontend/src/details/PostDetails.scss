@@ -1,1 +1,15 @@
-.post-details {}
+@import './PostDetailsActions.scss';
+
+.post-details {
+  padding: 24px;
+
+  &__header {
+    &-subtitle {
+      margin-top: 5px !important;
+    }
+  }
+
+  &__content {
+    margin: 24px 0;
+  }
+}
