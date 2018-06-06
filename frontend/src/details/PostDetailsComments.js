@@ -46,6 +46,7 @@ class PostDetailsComments extends Component {
             onSubmit={ this.handleSubmit }
           >
             <TextField
+              required
               className="form-comment__form-field"
               name="author"
               type="text"
@@ -53,6 +54,7 @@ class PostDetailsComments extends Component {
             />
 
             <TextField
+              required
               className="form-comment__form-field"
               name="body"
               type="text"

@@ -58,6 +58,7 @@ class PostDetailsComment extends Component {
                 <input type="hidden" name="id" value={ comment.id }/>
 
                 <Input
+                  required
                   name="body"
                   defaultValue={ comment.body }
                   className="post-comment__item-form-input"
