@@ -31,4 +31,10 @@
       }
     }
   }
+
+  &__content {
+    &-loading {
+      text-align: center;
+    }
+  }
 }

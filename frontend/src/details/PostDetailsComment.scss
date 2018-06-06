@@ -1,1 +1,10 @@
-.post-comment {}
+.post-comment {
+  &__item-form {
+    width: 100%;
+
+    &-input {
+      margin-right: 30px;
+      width: 50%;
+    }
+  }
+}

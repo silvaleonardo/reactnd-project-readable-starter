@@ -5,6 +5,10 @@
 .post-details {
   padding: 24px;
 
+  &__loading {
+    text-align: center;
+  }
+
   &__header {
     &-subtitle {
       margin-top: 5px !important;

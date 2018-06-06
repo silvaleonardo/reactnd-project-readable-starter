@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import serializeForm from 'form-serialize';
 
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
@@ -7,10 +8,30 @@ import Button from 'material-ui/Button';
 
 import AddIcon from 'material-ui-icons/Add';
 
+import Loading from '../commons/Loading';
+import SnackbarMessage from '../commons/SnackbarMessage';
 import PostDetailsComment from './PostDetailsComment';
 
 class PostDetailsComments extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = serializeForm(event.target, { hash: true });
+
+    this.props.onCreate(formData);
+
+    event.target.reset();
+  }
+
   render() {
+    const { comments: { loading, error, data }, parentId, onEdit, onVoteScore, onDelete } = this.props;
+
     return (
       <section className="post-comments">
         <header className="post-comments__header">
@@ -20,20 +41,25 @@ class PostDetailsComments extends Component {
         <section className="post-comments__form-comment">
           <Typography variant="subheading" component="h4">Add comment</Typography>
 
-          <form className="form-comment__form">
+          <form
+            className="form-comment__form"
+            onSubmit={ this.handleSubmit }
+          >
             <TextField
               className="form-comment__form-field"
-              id="author"
+              name="author"
               type="text"
               label="Author"
             />
 
             <TextField
               className="form-comment__form-field"
-              id="comment"
+              name="body"
               type="text"
               label="Comment"
             />
+
+            <input type="hidden" name="parentId" value={ parentId } />
 
             <Button
               mini
@@ -47,14 +73,27 @@ class PostDetailsComments extends Component {
           </form>
         </section>
 
-        <section className="post-comments__content">
-          <List className="post-comments__list">
-            <PostDetailsComment />
-            <PostDetailsComment />
-            <PostDetailsComment />
-            <PostDetailsComment />
-          </List>
+        <section className={ `post-comments__content` }>
+          { loading ? (
+            <div className="post-comments__content-loading">
+              <Loading />
+            </div>
+          ) : (
+            <List className="post-comments__list">
+              { data.map(comment =>
+                <PostDetailsComment
+                  key={ comment.id }
+                  comment={ comment }
+                  onEdit={ onEdit }
+                  onVoteScore={ onVoteScore }
+                  onDelete={ onDelete }
+                />
+              ) }
+            </List>
+          ) }
         </section>
+
+        <SnackbarMessage message={ error } />
       </section>
     );
   }
