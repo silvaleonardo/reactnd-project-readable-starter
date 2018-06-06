@@ -1,0 +1,25 @@
+.post-form {
+  padding: 24px;
+
+  &__header {
+    margin-bottom: 24px;
+  }
+
+  &__content {
+    margin-top: 24px;
+
+    &-buttons {
+      button {
+        margin: 0 10px;
+      }
+    }
+  }
+
+  &__loading {
+    text-align: center;
+  }
+
+  &__full-width {
+    width: 100%;
+  }
+}

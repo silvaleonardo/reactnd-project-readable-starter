@@ -1,4 +1,8 @@
+import uuid from 'uuid/v1';
 import request from './requestConfig';
+
+export const create = data =>
+  request('/posts', { method: 'POST', body: { id: uuid(), timestamp: Date.now(), ...data } });
 
 export const getAll = (category = null) => (
   !category ?
@@ -8,6 +12,9 @@ export const getAll = (category = null) => (
 
 export const getById = id =>
   request(`/posts/${id}`);
+
+export const update = (id, data) =>
+  request(`/posts/${id}`, { method: 'PUT', body: data });
 
 export const voteById = (id, option) =>
   request(`/posts/${id}`, { method: 'POST', body: { option } });
