@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
 import PostDetailsActions from './PostDetailsActions';
+import PostDetailsComments from './PostDetailsComments';
 
 class PostDetails extends Component {
   render() {
@@ -57,6 +58,8 @@ class PostDetails extends Component {
             Everyone says so after all.
           </Typography>
         </section>
+
+        <PostDetailsComments />
       </Paper>
     );
   }
