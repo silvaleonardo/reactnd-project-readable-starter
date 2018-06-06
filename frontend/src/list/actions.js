@@ -1,4 +1,4 @@
-import { getAll, voteFromId, deleteFromId } from '../utils/PostsApi';
+import { getAll, voteById, deleteById } from '../utils/PostsApi';
 
 export const POST_LIST_REQUEST = 'POST_LIST_REQUEST';
 export const POST_LIST_RECEIVE = 'POST_LIST_RECEIVE';
@@ -27,7 +27,7 @@ export const sortPosts = (dispatch, orderBy) =>
   });
 
 export const votePost = (dispatch, id, option) =>
-  voteFromId(id, option)
+  voteById(id, option)
     .then(post => dispatch({
       type: POST_LIST_VOTE,
       payload: { post }
@@ -37,7 +37,7 @@ export const votePost = (dispatch, id, option) =>
       payload: { error: 'There was a problem to vote in post, try again later!' }
     }));
 
-export const deletePost = (dispatch, id) => deleteFromId(id)
+export const deletePost = (dispatch, id) => deleteById(id)
   .then(post => dispatch({
     type: POST_LIST_DELETE,
     payload: { post }

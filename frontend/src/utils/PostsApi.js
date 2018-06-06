@@ -6,8 +6,8 @@ export const getAll = (category = null) => (
   request(`/${category}/posts`)
 );
 
-export const voteFromId = (id, option) =>
+export const voteById = (id, option) =>
   request(`/posts/${id}`, { method: 'POST', body: { option } });
 
-export const deleteFromId = id =>
+export const deleteById = id =>
   request(`/posts/${id}`, { method: 'DELETE' });
