@@ -75,7 +75,8 @@ class PostDetails extends Component {
     if (loading || (!error && !data)) return this.renderLoading();
     if (error) return <SnackbarMessage message={ error } />;
 
-    if (data.deleted) return <Redirect to="/" />;
+    if (data.title && data.deleted) return <Redirect to="/" />;
+    if (!data.title || data.deleted) return <Redirect to="/not-found" />;
 
     return (
       <Paper
