@@ -30,6 +30,8 @@ const Header = ({ menuToggleClick }) => (
         className="app-header__title"
         variant="title"
         color="inherit"
+        component={ Link }
+        to="/"
       >
         Readable
       </Typography>
