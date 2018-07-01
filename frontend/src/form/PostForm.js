@@ -16,9 +16,10 @@ import { MenuItem } from 'material-ui/Menu';
 import Loading from '../commons/Loading';
 import SnackbarMessage from '../commons/SnackbarMessage';
 
-import { createPost, getPostById, editPost } from './actions';
+import { createPost, getPostById, editPost, cleanPost } from './actions';
 
 const initialState = {
+  editing: false,
   title: '',
   author: '',
   category: '',
@@ -41,12 +42,17 @@ class PostForm extends Component {
   componentWillMount() {
     const { params: { postId } } = this.props.match;
 
-    if (postId) this.props.getPostById(postId);
+    this.props.cleanPost();
+
+    if (postId) this.setState({ editing: true },
+      this.props.getPostById(postId));
   }
 
-  shouldComponentUpdate(props, state) {
-    if (this.props.data.title !== props.data.title) {
-      this.setState({ ...props.data });
+  componentWillReceiveProps(props, state) {
+    if (!!props.data.title && !state.title) {
+      this.setState({
+        ...props.data
+      });
     }
 
     return true;
@@ -79,7 +85,7 @@ class PostForm extends Component {
 
   render() {
     const { loading, error, message, data: { author: propAuthor, category: propCategory }, categories } = this.props;
-    const { title, author, category, body } = this.state;
+    const { editing, title, author, category, body } = this.state;
 
     return (
       <Paper
@@ -129,7 +135,7 @@ class PostForm extends Component {
                   label="Author"
                   value={ author }
                   onChange={ this.handlerChange }
-                  disabled={ !!propAuthor }
+                  disabled={ editing }
                 />
               </Grid>
 
@@ -144,7 +150,7 @@ class PostForm extends Component {
 
                     <Select
                       required
-                      disabled={ !!propCategory }
+                      disabled={ editing }
                       onChange={ this.handlerChange }
                       value={ category }
                       inputProps={ {
@@ -200,7 +206,8 @@ const mapStateToProps = ({ PostForm: { loading, error, message, data }, Commons:
 const mapDispatchToProps = dispatch => ({
   createPost: data => createPost(dispatch, data),
   getPostById: id => getPostById(dispatch, id),
-  editPost: (id, data) => editPost(dispatch, id, data)
+  editPost: (id, data) => editPost(dispatch, id, data),
+  cleanPost: () => cleanPost(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
