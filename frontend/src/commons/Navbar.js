@@ -63,6 +63,7 @@ class Navbar extends Component {
                 component={ Link }
                 to="/"
                 button
+                onClick={ () => menuClose() }
               >
                 All Categories
               </ListItem>
@@ -74,6 +75,7 @@ class Navbar extends Component {
                     component={ Link }
                     to={ `/${path}` }
                     button
+                    onClick={ () => menuClose() }
                   >
                     { capitalize(name) }
                   </ListItem>
