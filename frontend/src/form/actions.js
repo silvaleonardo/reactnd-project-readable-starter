@@ -41,3 +41,8 @@ export const editPost = (dispatch, id, data) =>
       type: POST_FORM_EDIT,
       payload: { error: 'There was a problem to edit post id, try again later!' }
     }));
+
+export const cleanPost = dispatch =>
+  dispatch({
+    type: POST_FORM_CLEAN,
+  });

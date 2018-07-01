@@ -2,7 +2,8 @@ import {
   POST_FORM_REQUEST,
   POST_FORM_RECEIVE,
   POST_FORM_CREATE,
-  POST_FORM_EDIT
+  POST_FORM_EDIT,
+  POST_FORM_CLEAN,
 } from './actions';
 
 const initialState = {
@@ -34,7 +35,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        loading: false
+        loading: false,
+      };
+    case POST_FORM_CLEAN:
+      return {
+        ...initialState,
       };
     default:
       return state;
